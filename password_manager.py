@@ -1,4 +1,5 @@
 import sqlite3
+import computing
 
 conn = sqlite3.connect('information.db')
 cur = conn.cursor()
@@ -18,30 +19,41 @@ choice = input("""What would you like to do?
     -Exit
     [new/login/exit]
     > """).lower()
-while True:
-    if choice == 'new':
-        username = input("What woud you like your user name to be? ")
-        email = input("What's your email? ")
-        password_first = input("What would you like your password to be? ")
-        while True:
-            password_same = input("Please reenter your password. ")
-            if password_first == password_same:
-                password = password_first
-                break
-            else:
-                print("Passwords do not match please try again. ")
-    break
+# while True:
+if choice == 'new':
+    username = input("What woud you like your user name to be? ")
+    email = input("What's your email? ")
+    password_first = input("What would you like your password to be? ")
+    while True:
+        password_same = input("Please reenter your password. ")
+        if password_first == password_same:
+            password = password_first
+            
+            break
+        else:
+            print("Passwords do not match please try again. ")
+    
 
-cur.execute(""" INSERT INTO accountinfo (Username, Email, Password) VALUES (?, ?, ?)""", (username, email, password))
-conn.close()
-elif answer == 'login':
+    cur.execute(""" INSERT INTO accountinfo (Username, Email, Password) VALUES (?, ?, ?)""", (username, email, password))
+    conn.commit()
+    conn.close()
+
+elif choice == 'login':
     username_validation = input("Username: ")
     password_validation = input("Password: ")
-    cur.execute(""" SELECT * FROM accountinfo WHERE Username = )
+    uncheck = computing.check_user_credentials(cur, username_validation)
+    pwcheck = computing.check_password_credentials(cur, password_validation)
+    if uncheck and pwcheck == True:
+        print("You have successfully logged in!")
+    else:
+        print("Sorry. Failed to log in.")
+
+    # uncheck = computing.check_credentials(cur, username)
 
 
-# elif answer == 'exit':
 
-# else:
-#     print("Invalid option")
-#             cur.execute(""" INSERT INTO passwords (Email, Password) VALUES (?, ?)""", (email, password))
+ elif choice == 'exit':
+     break
+
+ else:
+    print("Invalid option")
