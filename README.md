@@ -1,40 +1,42 @@
 # Project Proposal
-## Password cracker
+## Password strength checker
 
 ### Description and Motivation
-In this project we would like to build a program that can guess the correct password. We will build a password saver to be able to have passwords to crack. Each program will have its own Gui. We wanted to make a password cracker for ethical hacking. Jeremiah and I are interested in ethical hacking.
+In this project we would like to make a program that can will let users make an account. Similar to signing up for facebook, instagram, etc.. The program will also check how strong the password is.The program will also let them sign into their accounts. 
 
 ### Prior Art
-Prior arts would be, Hashcat, John the Ripper, Brutus, Wfuzz, etc.. Our project would work like these but we are going to use a brute force password cracker.
+Prior arts would be, Google, Facebook, Gmail, Amazon. Any website that requires an account. 
 
 ### Core User Workflows
 - Will Welcome the user.
 
-- Gives the user the choice of saving passwords or cracking them.
+- Gives the user the choice of creating a new account or logging in.
 
-- if they choose save they can save a password
+- if they choose new account or sign up, they can create a new account.
 
-- if they choose crack it will cracked saved passwords.
+- It will also check their password that they are typing in when they create a new password.
+
+- if they choose to login it will allow them to login.
 
 
 ## Tuesday - Thursday Goals
 
 ### Tuesday
 
-We will make a password saver, saving passwords into a SQL database. Start working on a Gui for the password saver. We will also work with how the Gui will get the information and store it into the database. Charles will work on the SQL database and putting the saved passwords into the data base, while Jeremiah will work on the 
+We will make an account saver, saving accounts into a SQL database. Start working on a Gui for Account saver. We will also work with how the Gui will get the information and store it into the database. Charles will work on the SQL database and putting the saved accounts into the data base, while Jeremiah will work on the Gui.
 
 ### Wednesday
 
-We will make a passsword cracker, we would like for the password cracker to return a saved password from a SQL database. If we have time,  we will work on the GUI for the password cracker, we woud like the Gui to be functional and successful at finding the saved passwords. Charles will work on the SQL database and putting the saved passwords into the database while Jeremiah will work on making sure the password information given by the user is stored into the database. 
+We will make a login function, we would like for the Account saver to return a saved account from a SQL database. If we have time, we woud like the Gui to be functional and successful at finding the saved accounts. Charles will work on the SQL database and putting the saved accounts into the database while Jeremiah will work on making sure the account information given by the user is stored into the database. 
 
 ### Thursday
 
-We will focus on running the code, trying to find bugs and errors. After that, we will use the cracker to try and find a password that is stored into the database. Charles will work on the bugs while Jeremiah will work on the cracker trying to find a valid password in the database and have the cracker use it to gain access. 
+We will focus on running the code, trying to find bugs and errors. After that, we will save an account or two into the database. Charles will work on the bugs while Jeremiah will work on seeing if multiple accounts can get saved and can login. 
 
 ### How will you use the content from this unit?
 
 
-- we plan to use SQL to save passwords
+- we plan to use SQL to save accounts
 
 - we plan to use sets, tuples, and dictonaries.
 
