@@ -3,20 +3,38 @@ import sqlite3
 conn = sqlite3.connect('information.db')
 cur = conn.cursor()
 
-# cur.execute(""" CREATE TABLE IF NOT EXISTS passwords(
-#     Email TEXT,
-#     Password TEXT
-# )"""
-# )
+cur.execute(""" CREATE TABLE IF NOT EXISTS accounts(
+    Username TEXT,
+    Email TEXT,
+    Password TEXT
+)"""
+)
 
-# print("Welcome to the password manager! ")
-# while True:
-#     answer = input("""Which option suits your needs today?
-#     -save
-#     -exit
-#     >>> """)
-#     if answer == 'save':
-#         while True:
-#             email = input("What's your email?")
-#             password = input("What's your password?")
+
+print("Welcome! ")
+choice = input("""What would you like to do?
+    - New Account
+    -Login to Account
+    -Exit
+    [new/login/exit]
+    > """).lower()
+while True:
+    if choice == 'new':
+        username = input("What woud you like your user name to be? ")
+        email = input("What's your email? ")
+        password_first = input("What would you like your password to be? ")
+        password_same = input("Please reenter your password. ")
+        if password_first == password_same:
+            password = password_first
+            break
+        else:
+            print("Passwords do not match please try agian. ")
+
+# elif answer == 'login':
+
+
+# elif answer == 'exit':
+
+# else:
+#     print("Invalid option")
 #             cur.execute(""" INSERT INTO passwords (Email, Password) VALUES (?, ?)""", (email, password))
