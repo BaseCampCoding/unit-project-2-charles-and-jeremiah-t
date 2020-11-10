@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "password_manager",
+            "database": "${workspaceFolder:unit-project-2-charles-and-jeremiah-t}/information.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

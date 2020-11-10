@@ -52,8 +52,8 @@ elif choice == 'login':
 
 
 
- elif choice == 'exit':
-     break
+elif choice == 'exit':
+    pass
 
- else:
+else:
     print("Invalid option")
