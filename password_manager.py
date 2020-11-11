@@ -22,7 +22,7 @@ choice = input("""What would you like to do?
     -Exit
     [new/login/exit]
     > """).lower()
-# while True:
+#while True:
 if choice == 'new':
     username = input("What woud you like your user name to be? ")
     email = input("What's your email? ")
@@ -35,12 +35,11 @@ if choice == 'new':
             break
         else:
             print("Passwords do not match please try again. ")
-    
 
     cur.execute(""" INSERT INTO accountinfo (Username, Email, Password) VALUES (?, ?, ?)""", (username, email, password))
     conn.commit()
     conn.close()
-
+    pass
 elif choice == 'login':
     username_validation = input("Username: ")
     password_validation = input("Password: ")
@@ -94,6 +93,27 @@ elif choice == 'login':
     # conn.row_factory = password_dict_info
     # print(cur.fetchone() [0])
     # print(password_dict_info(cur, password_info))
+    
+    
+    def user_dict_info(cur, info):
+        info_dict = {}
+        for index, column in enumerate(cur.description):
+            info_dict[column[0]] = user_info[index]
+        return info_dict
+    cur.execute('SELECT 1 as Username')
+    conn.row_factory = user_dict_info
+    print(cur.fetchone() [0])
+    print(user_dict_info(cur, user_info))
+
+    def password_dict_info(cur, info):
+        password_dict = {}
+        for index, column in enumerate(cur.description):
+            password_dict[column[0]] = password_info[index]
+        return password_dict
+    cur.execute('SELECT 3 as Password')
+    conn.row_factory = password_dict_info
+    print(cur.fetchone() [0])
+    print(password_dict_info(cur, password_info))
     
 
     window = app.Window("InfoSeeker", layout)
