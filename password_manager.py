@@ -48,7 +48,7 @@ elif choice == 'login':
     if uncheck and pwcheck == True:
         print("You have successfully logged in!")
         layout = [[app.Text("Welcome to the InfoSeeker!")], [app.Text("Here's everyone's information.")], 
-        [app.Text("Information: ", size = (30,1))], [app.Text("Username: charles", size= (40,1))], [app.Text("Email: charles@bcca.org", size= (40,1))], [app.Text("Password: password", size=(40,1))], [app.Text("Username: jeremiah", size= (40,1))], [app.Text("Email: jeremiahtatum@yahoo.com", size=(40,1))], [app.Text("Password: tacobell", size= (40,1))], [app.Button("Exit")]]
+        [app.Text("Information: ", size = (30,1))], [app.Text(cur.fetchall(), size= (40,1))], [app.Button("Exit")]]
         user_info = ((username_validation, ))
         password_info = ((password_validation, ))
         def user_dict_info(cur, info):
@@ -56,9 +56,11 @@ elif choice == 'login':
             for index, column in enumerate(cur.description):
                 info_dict[column[0]] = user_info[index]
             return info_dict
-        cur.execute('SELECT 1 as Username')
+        cur.execute('SELECT * FROM accountinfo WHERE Username = ?', (username_validation, ))
+        user_information = cur.fetchall()
+
         conn.row_factory = user_dict_info
-        print(cur.fetchone() [0])
+        print(user_information)
         print(user_dict_info(cur, user_info))
 
         def password_dict_info(cur, info):
@@ -95,33 +97,26 @@ elif choice == 'login':
     # print(password_dict_info(cur, password_info))
     
     
-    def user_dict_info(cur, info):
-        info_dict = {}
-        for index, column in enumerate(cur.description):
-            info_dict[column[0]] = user_info[index]
-        return info_dict
-    cur.execute('SELECT 1 as Username')
-    conn.row_factory = user_dict_info
-    print(cur.fetchone() [0])
-    print(user_dict_info(cur, user_info))
+    # def user_dict_info(cur, info):
+    #     info_dict = {}
+    #     for index, column in enumerate(cur.description):
+    #         info_dict[column[0]] = user_info[index]
+    #     return info_dict
+    # cur.execute('SELECT 1 as Username')
+    # conn.row_factory = user_dict_info
+    # print(cur.fetchone() [0])
+    # print(user_dict_info(cur, user_info))
 
-    def password_dict_info(cur, info):
-        password_dict = {}
-        for index, column in enumerate(cur.description):
-            password_dict[column[0]] = password_info[index]
-        return password_dict
-    cur.execute('SELECT 3 as Password')
-    conn.row_factory = password_dict_info
-    print(cur.fetchone() [0])
-    print(password_dict_info(cur, password_info))
+    # def password_dict_info(cur, info):
+    #     password_dict = {}
+    #     for index, column in enumerate(cur.description):
+    #         password_dict[column[0]] = password_info[index]
+    #     return password_dict
+    # cur.execute('SELECT 3 as Password')
+    # conn.row_factory = password_dict_info
+    # print(cur.fetchone() [0])
+    # print(password_dict_info(cur, password_info))
     
-
-    window = app.Window("InfoSeeker", layout)
-    while True:
-        event, values = window.read()
-        if event == "Exit" or event == app.WINDOW_CLOSED:
-            break
-        window[' -OUT- '].update(values[' -IN- '])
 
 
 
