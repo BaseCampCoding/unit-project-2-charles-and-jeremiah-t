@@ -10,3 +10,9 @@ def check_password_credentials(cur, password: str):
     rows = cur.fetchall()
     return len(rows) > 0
     
+
+class Account:
+    def __init__(self, code):
+        self.code = code
+        self.is_valid = code in ACCOUNTS
+        self.discount = ACCOUNTS.get(code, 1)
