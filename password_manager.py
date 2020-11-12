@@ -14,10 +14,10 @@ cur.execute(""" CREATE TABLE IF NOT EXISTS accountinfo(
 )"""
 )
 
-con = sqlite3.connect('passwords.db')
-c = conn.cursor()
+# con = sqlite3.connect('information.db')
+# c = conn.cursor()
 
-c.execute(""" CREATE TABLE IF NOT EXISTS passwords(
+cur.execute(""" CREATE TABLE IF NOT EXISTS passwords(
   Application TEXT,
   Username TEXT,
   Email TEXT,
@@ -71,16 +71,22 @@ while True:
                     username = input(f"What's your username for {application}? ")
                     email = input(f"What's your email for {application}? ")
                     password = input(f"What's your password for {application}? ")
-                    c.execute(""" INSERT INTO passwords (Application, Username, Email, Password) VALUES (?, ?, ?, ?)""",(application, username, email, password))
-                    con.commit()
-                    con.close()
+                    cur.execute(""" INSERT INTO passwords VALUES (:application, :username, :email, :password)""",{'application': application, 'username': username, 'email': email, 'password': password})
+                    conn.commit()
+                    # con.close()
                     continue
                 elif answer == 'view':
-                    c.execute('''SELECT * FROM passwords''')
-                    for row in c.fetchall():
-                        data = f'Appliction: {row[0]} \n Username: {row[1]} \n Email: {row[2]} \n Password: {row[3]}'
-                    complete_data = computing.Password.__init__(data)
-                    computing.Password.application(complete_data)
+                    answer2 = input(""" Would you like to view one or all? \n [one/all] """).strip().lower()
+                    if answer2 == 'one':
+                        appp = input("Which application would you like information for? \n")
+                        username = input("What's your username for it? ")
+                        test = computing.Password.get_app_info(appp, username)
+                        
+
+                    elif answer2 == 'all':
+                        print("yeet")
+                    else:
+                        print("Invalid Sorry.")
 
                     
                     continue
@@ -98,11 +104,11 @@ while True:
             #     for index, column in enumerate(cur.description):
             #         info_dict[column[0]] = user_info[index]
             #     return info_dict
-            cur.execute('SELECT * FROM accountinfo WHERE Username = ?', (username_validation, ))
-            user_information = cur.fetchall()
+            # cur.execute('SELECT * FROM accountinfo WHERE Username = ?', (username_validation, ))
+            # user_information = cur.fetchall()
 
             # conn.row_factory = user_dict_info
-            print(user_information)
+            # print(user_information)
             # print(user_dict_info(cur, user_info))
 
             # def password_dict_info(cur, info):
