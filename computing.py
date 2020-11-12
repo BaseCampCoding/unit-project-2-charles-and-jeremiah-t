@@ -12,7 +12,19 @@ def check_password_credentials(cur, password: str):
     
 
 class Account:
-    def __init__(self, code):
-        self.code = code
-        self.is_valid = code in ACCOUNTS
-        self.discount = ACCOUNTS.get(code, 1)
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+class Password:
+    def __init__(self, application, username, email, password):
+        self.application = application
+        self.username = username
+        self.email = email
+        self.password = password
+
+    def application(self, data):
+        i want this function to retrun the print statement basically
+        
+        return ...
+        

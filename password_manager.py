@@ -55,30 +55,39 @@ while True:
         password_validation = input("Password: ")
         uncheck = computing.check_user_credentials(cur, username_validation)
         pwcheck = computing.check_password_credentials(cur, password_validation)
+        
         if uncheck and pwcheck == True:
             print("You have successfully logged in!")
-            answer = input("""What would you like to do? 
-            - Save information
-            - View information
-            - Exit
-            [Save/ View/ Exit]
-            """)
+            while True:
+                answer = input("""What would you like to do? 
+                - Save information
+                - View information
+                - Exit
+                [Save/ View/ Exit]
+                """)
 
-            if answer == 'save':
-                application = input("What application are you using? ")
-                username = input(f"What's your username for {application}? ")
-                email = input(f"What's your email for {application}? ")
-                password = input(f"What's your password for {application}? ")
-                c.execute(""" INSERT INTO passwords (Application, Username, Email, Password) VALUES (?, ?, ?, ?)""",(application, username, email, password))
-                con.commit()
-            elif answer == 'view':
-                c.execute(""" SELECT * FROM Passwords """)
-                for row in c.fetchall():
-                    print(row[0] +" - "+ row[1] +" - "+ row[2] +" - "+ row[3])
-            elif answer == 'exit':
-                break
-            else:
-                print("Invalid Option. ")
+                if answer == 'save':
+                    application = input("What application are you using? ")
+                    username = input(f"What's your username for {application}? ")
+                    email = input(f"What's your email for {application}? ")
+                    password = input(f"What's your password for {application}? ")
+                    c.execute(""" INSERT INTO passwords (Application, Username, Email, Password) VALUES (?, ?, ?, ?)""",(application, username, email, password))
+                    con.commit()
+                    con.close()
+                    continue
+                elif answer == 'view':
+                    c.execute('''SELECT * FROM passwords''')
+                    for row in c.fetchall():
+                        data = f'Appliction: {row[0]} \n Username: {row[1]} \n Email: {row[2]} \n Password: {row[3]}'
+                    complete_data = computing.Password.__init__(data)
+                    computing.Password.application(complete_data)
+
+                    
+                    continue
+                elif answer == 'exit':
+                    break
+                else:
+                    print("Invalid Option. ")
 
             # layout = [[app.Text("Welcome to the InfoSeeker!")], [app.Text("Here's everyone's information.")], 
             # [app.Text("Information: ", size = (30,1))], [app.Text(cur.fetchall(), size= (40,1))], [app.Button("Exit")]]
