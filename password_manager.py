@@ -76,19 +76,19 @@ while True:
                     # con.close()
                     continue
                 elif answer == 'view':
-                    answer2 = input(""" Would you like to view one or all? \n [one/all] """).strip().lower()
-                    if answer2 == 'one':
-                        appp = input("Which application would you like information for? \n")
-                        username = input("What's your Pin Code? ")
-                        test = computing.Password.get_app_info(appp, username)
+                    # answer2 = input(""" Would you like to view one or all? \n [one/all] """).strip().lower()
+                    # if answer2 == 'one':
+                    #     appp = input("Which application would you like information for? \n")
+                    #     pin_num = input("What's your Pin Code? ")
+                    #     test = computing.Password.get_app_info(appp, pin_num)
                         
 
-                    elif answer2 == 'all':
-                        userID = input("What's your Pin Number ")
-                        pin_num = int(userID)
-                        computing.Password.print_all(pin_num)
-                    else:
-                        print("Invalid Sorry.")
+                    # elif answer2 == 'all':
+                    userID = input("What's your Pin Number ")
+                    pin_num = int(userID)
+                    computing.Password.print_all(pin_num)
+                    # else:
+                    #     print("Invalid Sorry.")
 
                     
                     continue

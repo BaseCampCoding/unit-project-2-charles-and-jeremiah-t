@@ -37,10 +37,6 @@ def check_password_credentials(cur, password: str):
     return len(rows) > 0
     
 
-class Account:
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
 
 class Password:
     def __init__(self, application, username, email, password):
@@ -49,14 +45,8 @@ class Password:
         self.email = email
         self.password = password
 
-    # def update_application(data):
-    #     cur.execute('''SELECT * FROM passwords''')
-    #     cur.execute("UPDATE passwords set ")
-        # for row in c.fetchall():
-        #     data = f'UserID: {row[0]Appliction: {row[1]} \n Username: {row[2]} \n Email: {row[3]} \n Password: {row[4]}'
-
-    def get_app_info(application, username):
-        cur.execute('SELECT * FROM passwords WHERE application = :application AND username = :username', {'application': application, 'username': username})
+    def get_app_info(application, pin_num):
+        cur.execute('SELECT * FROM passwords WHERE application = :application AND UserId = :UserId', {'application': application, 'UserID': pin_num})
         for row in cur.fetchall():
             print(row)
         
