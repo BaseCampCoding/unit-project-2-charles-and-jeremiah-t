@@ -5,6 +5,7 @@ conn = sqlite3.connect('information.db')
 cur = conn.cursor()
 
 
+
 cur.execute(""" CREATE TABLE IF NOT EXISTS accountinfo(
     Username TEXT,
     Email TEXT,
@@ -13,6 +14,7 @@ cur.execute(""" CREATE TABLE IF NOT EXISTS accountinfo(
 )
 
 cur.execute(""" CREATE TABLE IF NOT EXISTS passwords(
+  UserID INTEGER,
   Application TEXT,
   Username TEXT,
   Email TEXT,
@@ -48,12 +50,17 @@ class Password:
         self.password = password
 
     # def update_application(data):
-    #     c.execute('''SELECT * FROM passwords''')
-    #                 for row in c.fetchall():
-    #                     data = f'Appliction: {row[0]} \n Username: {row[1]} \n Email: {row[2]} \n Password: {row[3]}'
+    #     cur.execute('''SELECT * FROM passwords''')
+    #     cur.execute("UPDATE passwords set ")
+        # for row in c.fetchall():
+        #     data = f'UserID: {row[0]Appliction: {row[1]} \n Username: {row[2]} \n Email: {row[3]} \n Password: {row[4]}'
 
     def get_app_info(application, username):
         cur.execute('SELECT * FROM passwords WHERE application = :application AND username = :username', {'application': application, 'username': username})
         for row in cur.fetchall():
             print(row)
         
+    def print_all(pin_num):
+        cur.execute('SELECT * FROM passwords WHERE UserID = :UserID', {'UserID': pin_num})
+        for row in cur.fetchall():
+            print(row)
