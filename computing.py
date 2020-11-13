@@ -63,4 +63,7 @@ class Password:
     def print_all(pin_num):
         cur.execute('SELECT * FROM passwords WHERE UserID = :UserID', {'UserID': pin_num})
         for row in cur.fetchall():
-            print(row)
+            temp = Password(row[1], row[2], row[3], row[4])
+            temp.printToConsole()
+    def printToConsole(self):
+        print(self.application + ' ' + self.username + ' ' + self.email + ' ' + self.password)
